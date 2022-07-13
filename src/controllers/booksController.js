@@ -155,13 +155,11 @@ const createBook = async (req, res) => {
 
     //Create Book Document.
     const bookData = await booksModel.create(requestBody);
-    return res
-      .status(201)
-      .send({
-        status: true,
-        message: "Book Successfully Created.",
-        requestBody: bookData,
-      });
+    return res.status(201).send({
+      status: true,
+      message: "Book Successfully Created.",
+      data: bookData,
+    });
   } catch (error) {
     return res.status(500).send({ status: false, message: error.message });
   }
@@ -256,7 +254,7 @@ const getBooks = async (req, res) => {
     return res.status(200).send({
       status: true,
       message: "Found All Books according to Queries, Successfully.",
-      requestBody: allBooks,
+      data: allBooks,
     });
   } catch (error) {
     return res.status(500).send({ status: false, message: error.message });
@@ -299,7 +297,7 @@ const getBookById = async (req, res) => {
     return res.status(200).send({
       status: true,
       message: "Book Found Successfully.",
-      requestBody: finalData,
+      data: finalData,
     });
   } catch (error) {
     return res.status(500).send({ status: false, message: error.message });
@@ -427,7 +425,7 @@ const updateBookById = async (req, res) => {
     res.status(200).send({
       status: true,
       message: "Successfully updated book details.",
-      requestBody: changeDetails,
+      data: changeDetails,
     });
   } catch (err) {
     return res.status(500).send({ status: false, Error: err.message });
